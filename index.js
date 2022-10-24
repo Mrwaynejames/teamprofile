@@ -4,7 +4,33 @@ const { default: Choices } = require("inquirer/lib/objects/choices");
 
 
 function teamMembers () {
-function manager() {
+
+    function newEmp () {
+        inquirer
+            .prompt([{
+                type: 'list',
+                message: 'what type of team member would you like to add?',
+                name: 'addEmp',
+                Choices: [
+                    "Manager",
+                    "Engineer",
+                    "Intern",
+                    "I'm okay my team is complete"]
+                }])
+            .then(function (input) {
+                switch(input.addEmployees) {
+                    case "manager":
+                        newManager();
+                    case "engineer":
+                        newEngineer();
+                    case "intern":
+                        newIntern();
+                    default:
+                        complete();
+                }})
+            }
+
+function newManager() {
     inquirer
         .prompt([
             {
@@ -26,32 +52,14 @@ function manager() {
             type: 'number',
             message: 'What is the manager office number?',
             name: 'mOffice'
-            },
-            {
-            type: 'list',
-            message: 'what type of team member would you like to add?',
-            name: 'addEmp',
-            Choices: [
-                "Engineer",
-                "Intern",
-                "I'm okay my team is complete"
-            ]
-            },
-        ])
+            }
+        ]).then(response => {
+            const 
+        })
 }
-.then(function (response) {
-switch(response.addEmployees) {
-    case "engineer":
-        addEngineer();
-    case "intern":
-        addIntern();
-    default:
-        complete();
-}
-})
 }
 
-function engineer() {
+function newEngineer() {
     inquirer
         .prompt([
             {
@@ -77,7 +85,7 @@ function engineer() {
         ])
     }
 
-    function intern() {
+    function newIntern() {
         inquirer
             .prompt([
                 {

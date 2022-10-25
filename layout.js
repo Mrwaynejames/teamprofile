@@ -1,3 +1,4 @@
+const output = [];
 const teamCards = cards => {
 
     const mCard = manager => {
@@ -5,7 +6,7 @@ const teamCards = cards => {
      `<section class="card manager-card">
         <div class="card-top bg-primary text-light">
         <h5>${manager.getName()}</h5>
-        <h6>&#x1f50e Manager</h6>
+        <h6>&#x1f50e ${manager.getRole()}</h6>
         </div>
         <div class="card-body">
             <p>ID:${manager.getID()}</p>
@@ -23,7 +24,7 @@ const teamCards = cards => {
      `<section class="card engineer-card">
         <div class="card-top bg-primary text-light">
         <h5>${engineer.getName()}</h5>
-        <h6>&#xe00c Engineer</h6>
+        <h6>&#xe00c ${engineer.getRole()}</h6>
         </div>
         <div class="card-body">
             <p>ID:${engineer.getID()}</p>
@@ -41,7 +42,7 @@ const teamCards = cards => {
      `<section class="card engineer-card">
         <div class="card-top bg-primary text-light">
         <h5>${intern.getName()}</h5>
-        <h6>&#xe51a Intern</h6>
+        <h6>&#xe51a ${intern.getRole()}</h6>
         </div>
         <div class="card-body">
             <p>ID:${intern.getID()}</p>
@@ -53,4 +54,12 @@ const teamCards = cards => {
     </section>
 `;
     };
+
+output.push(cards.filter(employee => employee.getRole() === "Manager").map(manager => mCard(manager)));
+
+output.push(cards.filter(employee => employee.getRole() === "Engineer").map(engineer => eCard(engineer)).join(""));
+
+output.push(cards.filter(employee => employee.getRole() === "Intern").map(intern => mCard(intern)).join(""));
+
+return output.join("");
 }

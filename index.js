@@ -21,15 +21,15 @@ function teamMembers () {
                     "Intern",
                     "I'm okay my team is complete"]
                 }])
-            .then(function (input) {
-                switch(input.addEmployees) {
+            .then(function (choice) {
+                switch(choice.addEmp) {
                     case "Manager":
                         newManager();
                     case "Engineer":
                         newEngineer();
                     case "Intern":
                         newIntern();
-                    default:
+                    case "I'm okay my team is complete":
                         complete();
                 }})
             }
@@ -124,4 +124,9 @@ function newEngineer() {
                 newEmp();
             });
         }
+    }
+
+    function complete(){
+        console.log ("Here is your team!")
+        
     }

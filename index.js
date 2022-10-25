@@ -1,7 +1,11 @@
+const Manager = require("./lib/Manager.js");
+const Engineer = require("./lib/Engineer.js");
+const Intern = require("./lib/Intern.js");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const { default: Choices } = require("inquirer/lib/objects/choices");
 
+employeeArr = []
 
 function teamMembers () {
 
@@ -19,11 +23,11 @@ function teamMembers () {
                 }])
             .then(function (input) {
                 switch(input.addEmployees) {
-                    case "manager":
+                    case "Manager":
                         newManager();
-                    case "engineer":
+                    case "Engineer":
                         newEngineer();
-                    case "intern":
+                    case "Intern":
                         newIntern();
                     default:
                         complete();
@@ -54,10 +58,12 @@ function newManager() {
             name: 'mOffice'
             }
         ]).then(response => {
-            const 
-        })
+            const manager = new Manager(response.mName, response.mID, response.mEmail, response.mOffice);
+            employeeArr.push(manager);
+            newEmp();
+        });
 }
-}
+
 
 function newEngineer() {
     inquirer
@@ -82,7 +88,11 @@ function newEngineer() {
             message: "What is the engineer's github username?",
             name: 'github'
             },
-        ])
+        ]).then(response => {
+            const engineer = new Engineer(response.eName, response.eID, response.eEmail, response.github);
+            employeeArr.push(engineer);
+            newEmp();
+        });
     }
 
     function newIntern() {
@@ -91,22 +101,27 @@ function newEngineer() {
                 {
                 type: 'input',
                 message: 'What is the intern name?',
-                name: 'eName'
+                name: 'iName'
                 },
                 {
                 type: 'number',
                 message: 'What is the intern ID number?',
-                name: 'eID'
+                name: 'iID'
                 },
                 {
                 type: 'input',
                 message: 'What is the intern email address?',
-                name: 'eEmail'
+                name: 'iEmail'
                 },
                 {
                 type: 'input',
                 message: "What school did/does the intern attend?",
                 name: 'school'
                 },
-            ])
+            ]).then(response => {
+                const intern = new Manager(response.iName, response.iID, response.iEmail, response.school);
+                employeeArr.push(intern);
+                newEmp();
+            });
         }
+    }

@@ -1,18 +1,17 @@
 const output = [];
-const teamCards = cards => {
+const teamCards = (cards) => {
 
     const mCard = manager => {
-        return 
-    `<section class="card manager-card">
+        return `<section class="card manager-card">
         <div class="card-top bg-success text-light">
             <h5 class="card-title">${manager.getName()}</h5>
             <h6 class="card-title">&#x1f50e ${manager.getRole()}</h6>
         </div>
         <div class="card-body">
             <ul class="list-group">
-                <li class="list-group-item">ID:${manager.getID()}</li>
+                <li class="list-group-item">ID:${manager.getId()}</li>
                 <li class="list-group-item">Email: <a href = "mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-                <li class="list-group-item"> Office Number:${manager.getOffice()}</li>
+                <li class="list-group-item"> Office Number:${manager.getOfficeNumber()}</li>
             </ul>
         </div>
     </section>
@@ -20,16 +19,15 @@ const teamCards = cards => {
     };
 
     const eCard = engineer => {
-        return 
-    `<section class="card engineer-card">
+        return  `<section class="card engineer-card">
         <div class="card-top bg-primary text-light">
             <h5 class="card-title">${engineer.getName()}</h5>
             <h6 class="card-title">&#xe00c ${engineer.getRole()}</h6>
         </div>
         <div class="card-body">
             <ul class="list-group">
-                <li class="list-group-item">ID:${engineer.getID()}</li>
-                <li class="list-group-item">Email: <a href = "mailto:${engineer.getEmail()}">${engineet.getEmail()}</a></li>
+                <li class="list-group-item">ID:${engineer.getId()}</li>
+                <li class="list-group-item">Email: <a href = "mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
                 <li class="list-group-item">Github: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</li>
             </ul>
         </div>
@@ -38,15 +36,14 @@ const teamCards = cards => {
     };
 
     const iCard = intern => {
-        return 
-     `<section class="card engineer-card">
+        return `<section class="card engineer-card">
         <div class="card-top bg-warning text-dark">
             <h5>${intern.getName()}</h5>
             <h6>&#xe51a ${intern.getRole()}</h6>
         </div>
         <div class="card-body">
             <ul class="list-group">
-                <li class="list-group-item">ID:${intern.getID()}</li>
+                <li class="list-group-item">ID:${intern.getId()}</li>
                 <li class="list-group-item">Email: <a href = "mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
                 <li class="list-group-item">School: ${intern.getSchool()}</li>
             </ul>
@@ -60,14 +57,13 @@ output.push(cards.filter(employee => employee.getRole() === "Manager").map(manag
 output.push(cards.filter(employee => employee.getRole() === "Engineer").map(engineer => eCard(engineer)).join(""));
 
 output.push(cards.filter(employee => employee.getRole() === "Intern").map(intern => iCard(intern)).join(""));
-
+console.log(output);
 return output.join("");
 }
 
 module.exports = cards => {
 
-return
-`<!DOCTYPE html>
+return`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -83,13 +79,14 @@ return
         </div>
     </header>
 
-    <main class="container">
-        <section class="row"> 
-            <div class="row cards-area col-12 justify-content-center">
-            ${teamCards(cards)}</div>  
-        </section>
-    </main>
+    <div class="container">
+        <div class="row">
+            <div class="team-area col-12 d-flex justify-content-center">
+                ${teamCards(cards)}
+            </div>
+        </div>
 </body>
 </html>`;
 
 };
+

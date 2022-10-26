@@ -4,36 +4,36 @@ const Intern = require("./lib/Intern.js");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const { default: Choices } = require("inquirer/lib/objects/choices");
-const layout = require("./layout");
-const index = require("./index");
+const layout = require("./layout.js");
+const index = require("./index.js");
 
-const htmlskeleton = (employeeArr) =>
-`<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
-    <header class="jumbotron jumbotron-fluid text-center bg-success">
-        <div class="container">
-            <h1 class="display-6">Team Profile</h1>
-        </div>
-    </header>
+// const htmlskeleton = (employeeArr) =>
+// `<!DOCTYPE html>
+// <html lang="en">
+// <head>
+//     <meta charset="UTF-8">
+//     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+//     <title>Document</title>
+// </head>
+// <body>
+//     <header class="jumbotron jumbotron-fluid text-center bg-success">
+//         <div class="container">
+//             <h1 class="display-6">Team Profile</h1>
+//         </div>
+//     </header>
 
-    <main class="container">
-        <section> 
-            <div>${teamCards(employeeArr)}</div>  
-        </section>
+//     <main class="container">
+//         <section> 
+//             <div>${employeeArr}</div>  
+//         </section>
 
-    </main>
-</body>
-</html>`;
+//     </main>
+// </body>
+// </html>`;
 
-employeeArr = []
+const employeeArr = []
 
 function teamMembers () {
 
@@ -162,12 +162,13 @@ function teamMembers () {
             console.log ("Here is your team!")
         
             //fs.writeFile('index.html', htmlskeleton, (err))
-            const tpg = htmlskeleton(employeeArr);
-        
+           //console.log(layout(employeeArr))
+           console.log(employeeArr)
+
             //const profile = htmlskeleton(employeeArr);
-        
-            fs.writeFile("index.html",tpg, (err) =>
-           err ? console.log(err) : console.log('Success!'));
+            fs.writeFileSync("index.html", layout(employeeArr), 'utf-8');
+        //     fs.writeFile("index.html",layout(employeeArr), (err) =>
+        //    err ? console.log(err) : console.log('Success!'));
         };
     newEmp();
 }

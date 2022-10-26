@@ -4,6 +4,33 @@ const Intern = require("./lib/Intern.js");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const { default: Choices } = require("inquirer/lib/objects/choices");
+const layout = require("./layout");
+
+const htmlskeleton = (teamCards) =>
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <header class="jumbotron jumbotron-fluid text-center bg-success">
+        <div class="container">
+            <h1 class="display-6">Team Profile</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <section> 
+            <div>${teamCards.employeeArr}</div>  
+        </section>
+
+    </main>
+</body>
+</html>`;
 
 employeeArr = []
 
@@ -15,7 +42,7 @@ function teamMembers () {
                 type: 'list',
                 message: 'what type of team member would you like to add?',
                 name: 'addEmp',
-                Choices: [
+                choices: [
                     "Manager",
                     "Engineer",
                     "Intern",
@@ -25,17 +52,21 @@ function teamMembers () {
                 switch(choice.addEmp) {
                     case "Manager":
                         newManager();
+                        break;
                     case "Engineer":
                         newEngineer();
+                        break;
                     case "Intern":
                         newIntern();
+                        break;
                     case "I'm okay my team is complete":
                         complete();
                 }})
             }
+            newEmp();
 
-function newManager() {
-    inquirer
+        function newManager() {
+        inquirer
         .prompt([
             {
             type: 'input',
@@ -62,10 +93,10 @@ function newManager() {
             employeeArr.push(manager);
             newEmp();
         });
-}
+    }
 
 
-function newEngineer() {
+    function newEngineer() {
     inquirer
         .prompt([
             {
@@ -119,14 +150,25 @@ function newEngineer() {
                 name: 'school'
                 },
             ]).then(response => {
-                const intern = new Manager(response.iName, response.iID, response.iEmail, response.school);
+                const intern = new Intern(response.iName, response.iID, response.iEmail, response.school);
                 employeeArr.push(intern);
                 newEmp();
             });
-        }
     }
+     
 
-    function complete(){
-        console.log ("Here is your team!")
+        function complete(){
+            console.log ("Here is your team!")
         
-    }
+            //fs.writeFile('index.html', htmlskeleton, (err))
+
+        
+            const profile = htmlskeleton(employeeArr);
+        
+            fs.writeFile('index.html', profile, (err) =>
+           err ? console.log(err) : console.log('Success!'))
+        }
+    
+}
+
+teamMembers()

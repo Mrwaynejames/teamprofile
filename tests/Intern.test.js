@@ -6,7 +6,7 @@ test("get school", () => {
     expect(employee.getSchool()).toBe(school);
 });
 
-test("get role.", () => {
+test("get role", () => {
     const role = "Intern";
     const employee = new Intern("meredith", 1, "meredithgrey@greysloanmem.com", "Oregon");
     expect(employee.getRole()).toBe(role);

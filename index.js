@@ -4,7 +4,7 @@ const Intern = require("./lib/Intern.js");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const { default: Choices } = require("inquirer/lib/objects/choices");
-const layout = require("./layout");
+const layout = require("./layout.js");
 
 const htmlskeleton = (teamCards) =>
 `<!DOCTYPE html>
@@ -25,7 +25,7 @@ const htmlskeleton = (teamCards) =>
 
     <main class="container">
         <section> 
-            <div>${teamCards.employeeArr}</div>  
+            <div>${teamCards(cards)}</div>  
         </section>
 
     </main>
@@ -62,12 +62,12 @@ function teamMembers () {
                     case "I'm okay my team is complete":
                         complete();
                 }})
-            }
-            newEmp();
+    }
+            //newEmp();
 
-        function newManager() {
-        inquirer
-        .prompt([
+    function newManager() {
+    inquirer
+    .prompt([
             {
             type: 'input',
             message: 'What is the manager name?',
@@ -168,7 +168,7 @@ function teamMembers () {
             fs.writeFile('index.html', profile, (err) =>
            err ? console.log(err) : console.log('Success!'))
         }
-    
+    newEmp();
 }
 
 teamMembers()

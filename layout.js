@@ -3,17 +3,17 @@ const teamCards = cards => {
 
     const mCard = manager => {
         return 
-     `<section class="card manager-card">
-        <div class="card-top bg-primary text-light">
-        <h5>${manager.getName()}</h5>
-        <h6>&#x1f50e ${manager.getRole()}</h6>
+    `<section class="card manager-card">
+        <div class="card-top bg-success text-light">
+            <h5 class="card-title">${manager.getName()}</h5>
+            <h6 class="card-title">&#x1f50e ${manager.getRole()}</h6>
         </div>
         <div class="card-body">
-            <p>ID:${manager.getID()}</p>
-            <br>
-            <p>Email: <a href = "mailto:${manager.getEmail()}">${manager.getEmail()}</a></p>
-            <br>
-            <p> Office Number:${manager.getOffice()}</p>
+            <ul class="list-group">
+                <li class="list-group-item">ID:${manager.getID()}</li>
+                <li class="list-group-item">Email: <a href = "mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
+                <li class="list-group-item"> Office Number:${manager.getOffice()}</li>
+            </ul>
         </div>
     </section>
 `;
@@ -21,17 +21,17 @@ const teamCards = cards => {
 
     const eCard = engineer => {
         return 
-     `<section class="card engineer-card">
+    `<section class="card engineer-card">
         <div class="card-top bg-primary text-light">
-        <h5>${engineer.getName()}</h5>
-        <h6>&#xe00c ${engineer.getRole()}</h6>
+            <h5 class="card-title">${engineer.getName()}</h5>
+            <h6 class="card-title">&#xe00c ${engineer.getRole()}</h6>
         </div>
         <div class="card-body">
-            <p>ID:${engineer.getID()}</p>
-            <br>
-            <p>Email: <a href = "mailto:${engineer.getEmail()}">${engineet.getEmail()}</a></p>
-            <br>
-            <p>Github: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</p>
+            <ul class="list-group">
+                <li class="list-group-item">ID:${engineer.getID()}</li>
+                <li class="list-group-item">Email: <a href = "mailto:${engineer.getEmail()}">${engineet.getEmail()}</a></li>
+                <li class="list-group-item">Github: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</li>
+            </ul>
         </div>
     </section>
 `;
@@ -40,16 +40,16 @@ const teamCards = cards => {
     const iCard = intern => {
         return 
      `<section class="card engineer-card">
-        <div class="card-top bg-primary text-light">
-        <h5>${intern.getName()}</h5>
-        <h6>&#xe51a ${intern.getRole()}</h6>
+        <div class="card-top bg-warning text-dark">
+            <h5>${intern.getName()}</h5>
+            <h6>&#xe51a ${intern.getRole()}</h6>
         </div>
         <div class="card-body">
-            <p>ID:${intern.getID()}</p>
-            <br>
-            <p>Email: <a href = "mailto:${intern.getEmail()}">${intern.getEmail()}</a></p>
-            <br>
-            <p>School: ${intern.getSchool()}</p>
+            <ul class="list-group">
+                <li class="list-group-item">ID:${intern.getID()}</li>
+                <li class="list-group-item">Email: <a href = "mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+                <li class="list-group-item">School: ${intern.getSchool()}</li>
+            </ul>
         </div>
     </section>
 `;
@@ -59,7 +59,37 @@ output.push(cards.filter(employee => employee.getRole() === "Manager").map(manag
 
 output.push(cards.filter(employee => employee.getRole() === "Engineer").map(engineer => eCard(engineer)).join(""));
 
-output.push(cards.filter(employee => employee.getRole() === "Intern").map(intern => mCard(intern)).join(""));
+output.push(cards.filter(employee => employee.getRole() === "Intern").map(intern => iCard(intern)).join(""));
 
 return output.join("");
 }
+
+module.exports = cards => {
+
+return
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <header class="jumbotron jumbotron-fluid text-center bg-danger">
+        <div class="container">
+            <h1 class="display-6 text-white">Team Profile</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="row"> 
+            <div class="row cards-area col-12 justify-content-center">
+            ${teamCards(cards)}</div>  
+        </section>
+    </main>
+</body>
+</html>`;
+
+};

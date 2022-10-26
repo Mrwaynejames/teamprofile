@@ -7,9 +7,7 @@ This team profile generator makes it easier to input your team as then view thie
 
 ## Table of Contents
 * [Decription](#Description) 
-* [Install](#Install)
 * [Usage](#Usage) 
-* [Credits](#Credits)
 * [License](#License)
 * [Badges](#Badges)
 * [Features](#Features)
@@ -43,6 +41,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## Features
+
+This program makes it very easy to make a profil by having prompts to answer as well as some questions that provide a list of options to choose from.
 
 ## Tests
 

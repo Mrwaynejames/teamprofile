@@ -4,9 +4,10 @@ const Intern = require("./lib/Intern.js");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const { default: Choices } = require("inquirer/lib/objects/choices");
-const layout = require("./layout.js");
+const layout = require("./layout");
+const index = require("./index");
 
-const htmlskeleton = (teamCards) =>
+const htmlskeleton = (employeeArr) =>
 `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +26,7 @@ const htmlskeleton = (teamCards) =>
 
     <main class="container">
         <section> 
-            <div>${teamCards(cards)}</div>  
+            <div>${teamCards(employeeArr)}</div>  
         </section>
 
     </main>
@@ -161,13 +162,13 @@ function teamMembers () {
             console.log ("Here is your team!")
         
             //fs.writeFile('index.html', htmlskeleton, (err))
-
+            const tpg = htmlskeleton(employeeArr);
         
-            const profile = htmlskeleton(employeeArr);
+            //const profile = htmlskeleton(employeeArr);
         
-            fs.writeFile('index.html', profile, (err) =>
-           err ? console.log(err) : console.log('Success!'))
-        }
+            fs.writeFile("index.html",tpg, (err) =>
+           err ? console.log(err) : console.log('Success!'));
+        };
     newEmp();
 }
 

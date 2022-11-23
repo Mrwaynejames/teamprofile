@@ -82,7 +82,7 @@ return`<!DOCTYPE html>
 
     <div class="container justify-content-center">
         <div class="row">
-            <div class="team-area col-10 d-flex justify-content-around">
+            <div class="team-area col-12 d-flex justify-content-around">
                 ${teamCards(cards)}
             </div>
         </div>

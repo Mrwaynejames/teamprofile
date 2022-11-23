@@ -2,7 +2,7 @@ const output = [];
 const teamCards = (cards) => {
 
     const mCard = manager => {
-        return `<section class="card manager-card col-3">
+        return `<section class="card manager-card">
                     <div class="card-top bg-success text-light">
                         <h5 class="card-title">${manager.getName()}</h5>
                         <h6 class="card-title">&#x1f50e ${manager.getRole()}</h6>
@@ -19,7 +19,7 @@ const teamCards = (cards) => {
                  };
 
     const eCard = engineer => {
-        return  `<section class="card engineer-card col-3">
+        return  `<section class="card engineer-card">
                     <div class="card-top bg-primary text-light">
                         <h5 class="card-title">${engineer.getName()}</h5>
                         <h6 class="card-title">&#x1F5A5 ${engineer.getRole()}</h6>
@@ -36,7 +36,7 @@ const teamCards = (cards) => {
                  };
 
     const iCard = intern => {
-        return `<section class="card intern-card col-3">
+        return `<section class="card intern-card">
                     <div class="card-top bg-warning text-dark">
                         <h5 class="card-title">${intern.getName()}</h5>
                         <h6 class="card-title">&#x1F476 ${intern.getRole()}</h6>
